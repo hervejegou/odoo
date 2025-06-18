@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class IntercomUserData(http.Controller):
 
-    @http.route('/intercom/user_info', type='http', methods=['POST'], auth='public')
+    @http.route('/intercom/user_info', type='http', methods=['POST'], auth='public', csrf=False)
     def intercom_user_info(self):
         user = request.env.user
         _logger.info(f"Fetching Intercom user info for user: {user.name} (ID: {user})")
