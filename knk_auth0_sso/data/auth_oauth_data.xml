@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+    <record id="auth_oauth_provider_auth0" model="auth.oauth.provider">
+        <field name="name">Sign in with Auth0</field>
+        <field name="client_id">dummy</field>
+        <field name="auth0_client_secret">dummy</field>
+        <field name="auth0_tenant_domain">dummy</field>
+        <field name="scope">openid profile email</field>
+        <field name="auth_endpoint">dummy</field>
+        <field name="validation_endpoint">dummy</field>
+        <field name="data_endpoint">dummy</field>
+        <field name="css_class">auth0-icon</field>
+        <field name="body">Login with Auth0</field>
+        <field name="auth0_provider">true</field>
+    </record>
+</odoo>
