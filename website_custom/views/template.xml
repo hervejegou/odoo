@@ -14,7 +14,7 @@
                 <label for="login" class="col-md-4 col-form-label">Email</label>
             </t>
             <t t-else="">
-                </t>
+            </t>
 
         </xpath>
         <xpath expr="//label[@for='password']" position="replace">
@@ -49,6 +49,16 @@
             </t>
             <t t-else="">
                 <t t-call="auth_oauth.providers"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="providers" inherit_id="auth_oauth.providers"  name="OAuth Providers">
+        <xpath expr="//em" position="replace">
+            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+                <em t-attf-class="d-block text-center text-muted small my-#{len(providers) if len(providers) &lt; 3 else 3}">
+                    - or -
+                </em>
             </t>
         </xpath>
     </template>
