@@ -16,6 +16,8 @@ from odoo.tools.misc import clean_context
 from odoo.addons.auth_oauth.controllers.main import OAuthLogin as Home, fragment_to_query_string
 from odoo.addons.web.controllers.utils import ensure_db, _get_login_redirect_url
 from odoo.exceptions import AccessDenied
+from odoo.web.controllers.utils import is_user_internal
+from odoo.addons.web.controllers.home import Home as WebHome
 
 _logger = logging.getLogger(__name__)
 
@@ -48,6 +50,12 @@ class OAuthLogin(Home):
             provider['auth_link'] = "%s?%s" % (auth_endpoint, werkzeug.urls.url_encode(params))
         return providers
 
+class Home(WebHome):
+
+    def _login_redirect(self, uid, redirect=None):
+        if not redirect and not is_user_internal(uid):
+            redirect = '/'  # Replace with your custom URL
+        return super()._login_redirect(uid, redirect=redirect)
 
 class Auth0Controller(http.Controller):
     @http.route('/auth_oauth/auth0/signin', type='http', auth='none')
