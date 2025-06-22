@@ -34,21 +34,12 @@
             <t t-else="">
             </t>
         </xpath>
-        <xpath expr="//div[hasclass('oe_login_buttons')]" position="replace">
+        <xpath expr="//div[hasclass('oe_login_buttons')]/button" position="replace">
             <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
-                <div class="oe_login_buttons text-center gap-1 d-grid mb-1 pt-3">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                    <t t-if="debug">
-                        <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm">Log in as
-                            superuser
-                        </button>
-                    </t>
-                    <div class="o_login_auth"/>
-                </div>
-                <t t-call="auth_oauth.providers"/>
+                <button type="submit" class="btn btn-primary">Log in</button>
             </t>
             <t t-else="">
-                <t t-call="auth_oauth.providers"/>
+
             </t>
         </xpath>
     </template>
@@ -62,8 +53,4 @@
             </t>
         </xpath>
     </template>
-
-        <template id="login" inherit_id="auth_signup.login"  name="Sign up - Reset Password">
-            <xpath expr="//p" position="replace"/>
-        </template>
 </odoo>
