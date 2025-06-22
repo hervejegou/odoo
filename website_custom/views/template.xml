@@ -37,7 +37,7 @@
         </xpath>
         <xpath expr="//div[hasclass('oe_login_buttons')]/button" position="replace">
             <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
-               <t t-call="auth_oauth.providers"/>
+               <div class="o_login_auth"/>
             </t>
             <t t-else="">
                  <div class="oe_login_buttons text-center gap-1 d-grid mb-1 pt-3">
@@ -47,9 +47,7 @@
                             superuser
                         </button>
                     </t>
-                    <div class="o_login_auth"/>
                 </div>
-
             </t>
         </xpath>
     </template>
