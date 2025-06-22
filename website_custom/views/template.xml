@@ -45,11 +45,11 @@
                     </t>
                     <div class="o_login_auth"/>
                 </div>
+                <t t-call="auth_oauth.providers"/>
             </t>
             <t t-else="">
+                <t t-call="auth_oauth.providers"/>
             </t>
         </xpath>
-
-
     </template>
 </odoo>
