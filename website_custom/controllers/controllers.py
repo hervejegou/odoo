@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import http
+from odoo.addons.web.controllers.home import Home as WebHome
+from odoo.addons.web.controllers.utils import  is_user_internal
 from odoo.http import request
+
 import logging
 import json
 _logger = logging.getLogger(__name__)
@@ -20,3 +23,9 @@ class IntercomUserData(http.Controller):
             content_type='application/json; charset=utf-8'
         )
 
+
+class Home(WebHome):
+    def _login_redirect(self, uid, redirect=None):
+        if '/odoo' in redirect and not is_user_internal(uid):
+            redirect = '/'
+        return super()._login_redirect(uid, redirect=redirect)
