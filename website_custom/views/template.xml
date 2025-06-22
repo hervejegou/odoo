@@ -2,25 +2,25 @@
 <odoo>
     <template id="web_login" inherit_id="web.login">
         <xpath expr="//input[@name='login']" position="attributes">
-            <attribute name="t-if">'/odoo' in request.httprequest.query_string.decode()</attribute>
+            <attribute name="t-if">'redirect=%2Fodoo%3F' in request.httprequest.query_string.decode()</attribute>
         </xpath>
         <xpath expr="//label[@for='login']" position="attributes">
-            <attribute name="t-if">'/odoo' in request.httprequest.query_string.decode()</attribute>
+            <attribute name="t-if">'redirect=%2Fodoo%3F' in request.httprequest.query_string.decode()</attribute>
         </xpath>
         <xpath expr="//label[@for='password']" position="attributes">
-            <attribute name="t-if">'/odoo' in request.httprequest.query_string.decode()</attribute>
+            <attribute name="t-if">'redirect=%2Fodoo%3F' in request.httprequest.query_string.decode()</attribute>
         </xpath>
         <xpath expr="//input[@name='password']" position="attributes">
-            <attribute name="t-if">'/odoo' in request.httprequest.query_string.decode()</attribute>
+            <attribute name="t-if">'redirect=%2Fodoo%3F' in request.httprequest.query_string.decode()</attribute>
         </xpath>
         <xpath expr="//div[hasclass('oe_login_buttons')]/button" position="attributes">
-            <attribute name="t-if">'/odoo' in request.httprequest.query_string.decode()</attribute>
+            <attribute name="t-if">'redirect=%2Fodoo%3F' in request.httprequest.query_string.decode()</attribute>
         </xpath>
     </template>
 
     <template id="providers" inherit_id="auth_oauth.providers" name="OAuth Providers">
         <xpath expr="//t" position="replace">
-            <t t-if="len(providers) &gt; 0 and '/odoo' not in request.httprequest.query_string.decode()">
+            <t t-if="len(providers) &gt; 0 and 'redirect=%2Fodoo%3F' not in request.httprequest.query_string.decode()">
                 <div class="o_auth_oauth_providers list-group mt-1 mb-1 text-start">
                     <a t-foreach="providers" t-as="p" class="list-group-item list-group-item-action py-2"
                        t-att-href="p['auth_link']">
@@ -31,4 +31,4 @@
             </t>
         </xpath>
     </template>
-</odoo>
+<redirect=%2Fodoo%3F>
