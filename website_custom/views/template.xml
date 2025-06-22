@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_login" inherit_id="web.login">
+        <xpath expr="//input[@name='login']" position="replace">
+            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+                <input type="text" placeholder="Email" name="login" t-att-value="login" id="login" class="form-control"
+                       required="required" autocapitalize="off" autocomplete="username"/>
+            </t>
+            <t t-else="">
+            </t>
+        </xpath>
+        <xpath expr="//label[@for='login']" position="replace">
+            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+                <label for="login" class="col-md-4 col-form-label">Email</label>
+            </t>
+            <t t-else="">
+                </t>
+
+        </xpath>
+        <xpath expr="//label[@for='password']" position="replace">
+            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+                <label for="password" class="form-label d-flex justify-content-between">Password</label>
+
+            </t>
+            <t t-else="">
+            </t>
+        </xpath>
+        <xpath expr="//input[@name='password']" position="replace">
+            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+                <input type="password" placeholder="Password" name="password" id="password" class="form-control"
+                       required="required" autocomplete="current-password"
+                       t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
+            </t>
+            <t t-else="">
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_login_buttons')]" position="replace">
+            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+                <div class="oe_login_buttons text-center gap-1 d-grid mb-1 pt-3">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <t t-if="debug">
+                        <button type="submit" name="redirect" value="/web/become" class="btn btn-link btn-sm">Log in as
+                            superuser
+                        </button>
+                    </t>
+                    <div class="o_login_auth"/>
+                </div>
+            </t>
+            <t t-else="">
+            </t>
+        </xpath>
+
+
+    </template>
+</odoo>
