@@ -62,4 +62,8 @@
             </t>
         </xpath>
     </template>
+
+        <template id="login" inherit_id="auth_signup.login"  name="Sign up - Reset Password">
+            <xpath expr="//p" position="replace"/>
+        </template>
 </odoo>

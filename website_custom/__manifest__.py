@@ -13,6 +13,6 @@
     'version': '0.1',
     'license': 'LGPL-3',
     'data': ['views/template.xml'],
-    'depends': ['base','web','auth_oauth']
+    'depends': ['base','web','auth_oauth','auth_signup']
 }
 
