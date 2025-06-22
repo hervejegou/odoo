@@ -49,13 +49,6 @@ class OAuthLogin(Home):
             provider['auth_link'] = "%s?%s" % (auth_endpoint, werkzeug.urls.url_encode(params))
         return providers
 
-class Home(WebHome):
-
-    def _login_redirect(self, uid, redirect=None):
-        if not redirect or redirect == '/my' and not is_user_internal(uid):
-            redirect = '/'  # Replace with your custom URL
-        return super()._login_redirect(uid, redirect=redirect)
-
 class Auth0Controller(http.Controller):
     @http.route('/auth_oauth/auth0/signin', type='http', auth='none')
     @fragment_to_query_string
@@ -90,7 +83,7 @@ class Auth0Controller(http.Controller):
             action = kw.get('a')
             menu = kw.get('m')
             redirect = werkzeug.urls.url_unquote_plus(kw.get('r')) if kw.get('r') else False
-            url = '/odoo'
+            url = '/'
             if redirect:
                 url = redirect
             elif action:
