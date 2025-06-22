@@ -52,7 +52,7 @@ class OAuthLogin(Home):
 class Home(WebHome):
 
     def _login_redirect(self, uid, redirect=None):
-        if not redirect and not is_user_internal(uid):
+        if not redirect or redirect == '/my' and not is_user_internal(uid):
             redirect = '/'  # Replace with your custom URL
         return super()._login_redirect(uid, redirect=redirect)
 
