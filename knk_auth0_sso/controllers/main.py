@@ -14,9 +14,8 @@ from odoo.http import request
 from odoo.tools.misc import clean_context
 
 from odoo.addons.auth_oauth.controllers.main import OAuthLogin as Home, fragment_to_query_string
-from odoo.addons.web.controllers.utils import ensure_db, _get_login_redirect_url
+from odoo.addons.web.controllers.utils import ensure_db, _get_login_redirect_url, is_user_internal
 from odoo.exceptions import AccessDenied
-from odoo.web.controllers.utils import is_user_internal
 from odoo.addons.web.controllers.home import Home as WebHome
 
 _logger = logging.getLogger(__name__)
