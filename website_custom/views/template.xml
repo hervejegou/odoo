@@ -2,7 +2,7 @@
 <odoo>
     <template id="web_login" inherit_id="web.login">
         <xpath expr="//input[@name='login']" position="replace">
-            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+            <t t-if="'internal_user=true' in request.httprequest.query_string.decode()">
 
             </t>
             <t t-else="">
@@ -11,7 +11,7 @@
             </t>
         </xpath>
         <xpath expr="//label[@for='login']" position="replace">
-            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+            <t t-if="'internal_user=true' in request.httprequest.query_string.decode()">
 
             </t>
             <t t-else="">
@@ -20,14 +20,14 @@
 
         </xpath>
         <xpath expr="//label[@for='password']" position="replace">
-            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+            <t t-if="'internal_user=true' in request.httprequest.query_string.decode()">
             </t>
             <t t-else="">
                  <label for="password" class="form-label d-flex justify-content-between">Password</label>
             </t>
         </xpath>
         <xpath expr="//input[@name='password']" position="replace">
-            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+            <t t-if="'internal_user=true' in request.httprequest.query_string.decode()">
             </t>
             <t t-else="">
                 <input type="password" placeholder="Password" name="password" id="password" class="form-control"
@@ -36,7 +36,7 @@
             </t>
         </xpath>
         <xpath expr="//div[hasclass('oe_login_buttons')]/button" position="replace">
-            <t t-if="'odoo=true' in request.httprequest.query_string.decode()">
+            <t t-if="'internal_user=true' in request.httprequest.query_string.decode()">
                <div class="o_login_auth"/>
             </t>
             <t t-else="">
