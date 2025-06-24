@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="signup" inherit_id="auth_signup.signup" name="Sign up login">
+        <xpath expr="//t[@t-call='auth_signup.fields']" position="replace"/>
+        <xpath expr="//div[hasclass('oe_login_buttons')]/button" position="replace"/>
+        <xpath expr="//div[hasclass('oe_login_buttons')]/a" position="replace"/>
+    </template>
+</odoo>

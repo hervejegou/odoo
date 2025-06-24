@@ -12,7 +12,11 @@
     'category': 'website',
     'version': '0.1',
     'license': 'LGPL-3',
-    'data': ['views/template.xml'],
+    'data': [
+        'views/auth_signup_login_template.xml',
+        'views/providers_template.xml',
+        'views/web_login_template.xml'
+    ],
     'depends': ['base','web','auth_oauth','auth_signup']
 }
 
