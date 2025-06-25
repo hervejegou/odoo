@@ -5,6 +5,7 @@
         <field name="client_id">dummy</field>
         <field name="auth0_client_secret">dummy</field>
         <field name="auth0_tenant_domain">dummy</field>
+        <field name="auth0_logout_url">/odoo</field>
         <field name="scope">openid profile email</field>
         <field name="auth_endpoint">dummy</field>
         <field name="validation_endpoint">dummy</field>
