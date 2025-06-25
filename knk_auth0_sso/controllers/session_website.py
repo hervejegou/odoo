@@ -1,6 +1,7 @@
 from odoo import http
 from odoo.http import request
 from odoo.addons.web.controllers.session import Session
+from werkzeug.utils import redirect
 
 class SessionWebsite(Session):
 
@@ -9,4 +10,5 @@ class SessionWebsite(Session):
         auth0_provider = request.env['auth.oauth.provider'].sudo().search([('auth0_tenant_domain', '!=', False),('enabled','=', True)], limit=1)
         if auth0_provider:
             redirect = auth0_provider.auth0_logout_url
-        return request.redirect(redirect, 303)
+            return redirect(redirect, code=303)
+        return super().logout(redirect=redirect)
