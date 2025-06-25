@@ -19,6 +19,7 @@ class AuthOauthProvider(models.Model):
     auth_endpoint = fields.Char(string="Authorization Endpoint", compute='_compute_auth0_endpoints', store=True)
     validation_endpoint = fields.Char(string="Token Validation Endpoint", compute='_compute_auth0_endpoints', store=True)
     data_endpoint = fields.Char(string="User Info Endpoint", compute='_compute_auth0_endpoints', store=True)
+    logout_url = fields.Char(string="Logout URL")
 
     @api.depends('auth0_tenant_domain')
     def _compute_auth0_endpoints(self):
