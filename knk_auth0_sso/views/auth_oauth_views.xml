@@ -9,6 +9,7 @@
                 <field name='auth0_provider' invisible="1" />
                 <field name='auth0_client_secret' password="True" required="auth0_provider" invisible="not auth0_provider" />
                 <field name='auth0_tenant_domain' required="auth0_provider" invisible="not auth0_provider" />
+                <field name='auth0_logout_url' required="auth0_provider" invisible="not auth0_provider" />
             </field>
         </field>
     </record>

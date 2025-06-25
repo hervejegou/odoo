@@ -16,10 +16,11 @@ class AuthOauthProvider(models.Model):
     auth0_tenant_domain = fields.Char(string="Auth0 Domain")
     auth0_client_secret = fields.Char(string='Secret Key')
     auth0_provider = fields.Boolean(compute="_compute_auth0_provider")
+    auth0_logout_url = fields.Char(string="Auth0 Logout Redirect URL", help="URL to redirect after logout from Auth0. If not set, it will use the default Odoo logout URL.")
+
     auth_endpoint = fields.Char(string="Authorization Endpoint", compute='_compute_auth0_endpoints', store=True)
     validation_endpoint = fields.Char(string="Token Validation Endpoint", compute='_compute_auth0_endpoints', store=True)
     data_endpoint = fields.Char(string="User Info Endpoint", compute='_compute_auth0_endpoints', store=True)
-    logout_url = fields.Char(string="Logout URL")
 
     @api.depends('auth0_tenant_domain')
     def _compute_auth0_endpoints(self):
