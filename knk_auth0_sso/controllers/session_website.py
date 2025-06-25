@@ -2,9 +2,6 @@ from odoo import http
 from odoo.http import request
 from odoo.addons.web.controllers.session import Session
 from werkzeug.utils import redirect as werkzeug_redirect
-import requests
-import logging
-_logger = logging.getLogger(__name__)
 
 
 class SessionWebsite(Session):
