@@ -19,10 +19,12 @@
     "category": "Extra Tools",
     "author": "Kanak Infosystems LLP.",
     "website": "https://www.kanakinfosystems.com",
-    "depends": ["auth_oauth"],
+    "depends": ["auth_oauth", "portal"],
     "data": [
         "data/auth_oauth_data.xml",
-        "views/auth_oauth_views.xml"
+        "views/auth_oauth_views.xml",
+        "views/portal_templates.xml",
+        "views/webclient_templates.xml"
     ],
     'assets': {
         'web.assets_frontend': [
