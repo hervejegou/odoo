@@ -13,15 +13,7 @@ class SessionWebsite(Session):
         auth0_provider = request.env['auth.oauth.provider'].sudo().search([('auth0_tenant_domain', '!=', False),('enabled','=', True)], limit=1)
         if auth0_provider:
             auth0_logout_url = auth0_provider.auth0_logout_url
-            try:
-                response = requests.request("GET", auth0_logout_url, headers={}, data={},timeout=10)
-                _logger.error('xxxxxx: %s'%response.text)
-                if response.status_code == 200:
-                    return werkzeug_redirect(auth0_logout_url, code=303)
-            except requests.RequestException as e:
-                _logger.error('ERRRORORROROROR: %s' % e)
-                return super().logout(redirect=redirect)
-
+            return werkzeug_redirect(auth0_logout_url, code=303)
         return super().logout(redirect=redirect)
 
 
