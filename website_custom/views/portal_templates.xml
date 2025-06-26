@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[@id='portal_common_category']" position="replace">
+            <t t-if="not env.user.has_group('base.group_portal')">
+                <div class="o_portal_category row g-2 mt-3" id="portal_common_category">
+                    <t t-call="portal.portal_docs_entry" t-if="False"/>
+                    <t t-call="portal.portal_docs_entry">
+                        <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
+                        <t t-set="title">Connection &amp; Security</t>
+                        <t t-set="text">Configure your connection parameters</t>
+                        <t t-set="url" t-value="'/my/security'"/>
+                        <t t-set="config_card" t-value="True"/>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

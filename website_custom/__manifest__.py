@@ -14,6 +14,7 @@
     'license': 'LGPL-3',
     'data': [
         'views/auth_signup_login_template.xml',
+        'views/portal_template.xml',
         'views/providers_template.xml',
         'views/web_login_template.xml'
     ],
