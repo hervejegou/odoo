@@ -13,10 +13,10 @@
     'version': '0.1',
     'license': 'LGPL-3',
     'data': [
-        'views/auth_signup_login_template.xml',
-        'views/portal_template.xml',
-        'views/providers_template.xml',
-        'views/web_login_template.xml'
+        'views/auth_signup_login_templates.xml',
+        'views/portal_templates.xml',
+        'views/providers_templates.xml',
+        'views/web_login_templates.xml'
     ],
     'depends': ['base','web','auth_oauth','auth_signup']
 }
