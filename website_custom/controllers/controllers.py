@@ -17,6 +17,7 @@ class IntercomUserData(http.Controller):
             'email': user.email,
             'user_id': user.id,
             'name': user.name,
+            'tags': user.tags or '',
         }
         return http.Response(
             json.dumps(data),
