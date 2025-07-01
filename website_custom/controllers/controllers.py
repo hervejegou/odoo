@@ -23,6 +23,8 @@ class IntercomUserData(http.Controller):
                 data['tags'] = ' '.join(user.partner_id.category_id.mapped('name'))
             else:
                 data['tags'] = user.partner_id.category_id.name
+        else:
+            data['tags'] = ''
         return http.Response(
             json.dumps(data),
             content_type='application/json; charset=utf-8'
