@@ -17,8 +17,12 @@ class IntercomUserData(http.Controller):
             'email': user.email,
             'user_id': user.id,
             'name': user.name,
-            'tags': user.tags or '',
         }
+        if user.partner_id.category_id:
+            if hasattr(user.partner_id.category_id, 'mapped'):
+                data['tags'] = ' '.join(user.partner_id.category_id.mapped('name'))
+            else:
+                data['tags'] = user.partner_id.category_id.name
         return http.Response(
             json.dumps(data),
             content_type='application/json; charset=utf-8'
