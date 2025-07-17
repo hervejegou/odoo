@@ -6,6 +6,7 @@ import json
 import logging
 import requests
 import werkzeug.utils
+from requests import session
 from werkzeug import urls
 from werkzeug.exceptions import BadRequest
 
@@ -53,8 +54,12 @@ class Auth0Controller(http.Controller):
     @fragment_to_query_string
     def auth0_signin(self, **kw):
         _logger.error("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc: %s", kw)
+        _logger.error("dbnamedbnamedbname: %s", request.session.db)
+        kw = {'code': kw.get('code'),
+         'state': '{"d": "skytalk-main-6301691", "p": 4, "r": "https%3A%2F%2Fpaneco.odoo.com%2Fweb"}'}
         state = json.loads(kw['state'])
         dbname = state['d']
+
         if not http.db_filter([dbname]):
             return BadRequest()
         ensure_db(db=dbname)
