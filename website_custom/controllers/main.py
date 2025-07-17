@@ -12,7 +12,7 @@ import jwt
 import base64
 import random
 from passlib.context import CryptContext
-from odoo.addons.web.controllers.main import _get_login_redirect_url
+from odoo.addons.web.controllers.utils import _get_login_redirect_url
 
 _logger = logging.getLogger(__name__)
 
