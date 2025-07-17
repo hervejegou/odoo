@@ -55,7 +55,8 @@ class Auth0Controller(http.Controller):
     def auth0_signin(self, **kw):
         _logger.info('kwkwkwkwkwkwkw: %s'%kw)
         state = json.loads(kw['state'])
-        dbname = state['d']
+        # dbname = state['d']
+        dbname = request.session.db  or "skytalk-main-6301691" or state.get('d')
         if not http.db_filter([dbname]):
             return BadRequest()
         ensure_db(db=dbname)
