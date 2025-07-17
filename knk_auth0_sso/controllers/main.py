@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Powered by Kanak Infosystems LLP.
 # © 2020 Kanak Infosystems LLP. (<https://www.kanakinfosystems.com>).
-
+import base64
 import json
 import logging
 import requests
@@ -53,10 +53,11 @@ class Auth0Controller(http.Controller):
     @http.route('/auth_oauth/auth0/signin', type='http', auth='none')
     @fragment_to_query_string
     def auth0_signin(self, **kw):
-        _logger.info('kwkwkwkwkwkwkw: %s'%kw)
-        state = json.loads(kw['state'])
-        # dbname = state['d']
-        dbname = request.session.db  or "skytalk-main-6301691" or state.get('d')
+        _logger.info('kwkwkwkwkwkwkw: %s',kw)
+        state_raw = kw['state']
+        state_json = base64.b64decode(state_raw).decode('utf-8')
+        state = json.loads(state_json)
+        dbname = state['d']
         if not http.db_filter([dbname]):
             return BadRequest()
         ensure_db(db=dbname)
