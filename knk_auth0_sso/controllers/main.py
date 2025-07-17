@@ -54,20 +54,8 @@ class Auth0Controller(http.Controller):
     @fragment_to_query_string
     def auth0_signin(self, **kw):
         _logger.info('kwkwkwkwkwkwkw: %s',kw)
-
-        state = {...}  # your state dict
-        state_json = json.dumps(state)
-        state_encoded = base64.b64encode(state_json.encode('utf-8')).decode('utf-8')
-        _logger.info('state_encoded: %s',state_encoded)
-        dbname = state['d']
-        if not http.db_filter([dbname]):
-            return BadRequest()
-        ensure_db(db=dbname)
-
-        provider_id = state['p']
-        request.update_context(**clean_context(state.get('c', {})))
         try:
-            provider = request.env['auth.oauth.provider'].sudo().browse(provider_id)
+            provider = request.env['auth.oauth.provider'].sudo().browse(4)
             authorization_data = provider.sudo().get_auth0_oauth_token(kw.get("code"), refresh_token=None)
             kw.update(authorization_data)
 
@@ -82,20 +70,20 @@ class Auth0Controller(http.Controller):
             except Exception as e:
                 _logger.exception("Error to fetch the user details: %s" % e)
 
-            _, login, key = request.env['res.users'].with_user(SUPERUSER_ID).auth0_auth_oauth(provider_id, kw)
+            _, login, key = request.env['res.users'].with_user(SUPERUSER_ID).auth0_auth_oauth(4, kw)
             request.env.cr.commit()
 
-            action = kw.get('a')
-            menu = kw.get('m')
-            redirect = werkzeug.urls.url_unquote_plus(kw.get('r')) if kw.get('r') else False
+            # action = kw.get('a')
+            # menu = kw.get('m')
+            # redirect = False
             url = '/'
-            if redirect:
-                url = redirect
-            elif action:
-                url = '/odoo#action=%s' % action
-            elif menu:
-                url = '/odoo#menu_id=%s' % menu
-
+            # if redirect:
+            #     url = redirect
+            # elif action:
+            #     url = '/odoo#action=%s' % action
+            # elif menu:
+            #     url = '/odoo#menu_id=%s' % menu
+            dbname = "skytalk-main-6301691"
             credential = {'login': login, 'token': key, 'type': 'oauth_token'}
             auth_info = request.session.authenticate(dbname, credential)
             resp = request.redirect(_get_login_redirect_url(auth_info['uid'], url), 303)
