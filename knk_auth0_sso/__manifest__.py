@@ -23,8 +23,6 @@
     "data": [
         "data/auth_oauth_data.xml",
         "views/auth_oauth_views.xml",
-        "views/portal_templates.xml",
-        "views/webclient_templates.xml"
     ],
     'assets': {
         'web.assets_frontend': [
