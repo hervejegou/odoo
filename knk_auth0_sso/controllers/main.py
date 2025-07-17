@@ -54,9 +54,11 @@ class Auth0Controller(http.Controller):
     @fragment_to_query_string
     def auth0_signin(self, **kw):
         _logger.info('kwkwkwkwkwkwkw: %s',kw)
-        state_raw = kw['state']
-        state_json = base64.b64decode(state_raw).decode('utf-8')
-        state = json.loads(state_json)
+
+        state = {...}  # your state dict
+        state_json = json.dumps(state)
+        state_encoded = base64.b64encode(state_json.encode('utf-8')).decode('utf-8')
+        _logger.info('state_encoded: %s',state_encoded)
         dbname = state['d']
         if not http.db_filter([dbname]):
             return BadRequest()
