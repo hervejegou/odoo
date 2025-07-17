@@ -87,6 +87,9 @@ class AuthOauthProvider(models.Model):
         }
 
         try:
+            _logger.error("validation_endpoint: %s", self.validation_endpoint)
+            _logger.error("data: %s", self.data)
+            _logger.error("headers: %s", self.headers)
             response = requests.post(self.validation_endpoint, data=data, headers=headers)
             response_data = response.json()
 
