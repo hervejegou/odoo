@@ -55,8 +55,7 @@ class Auth0Controller(http.Controller):
     def auth0_signin(self, **kw):
         _logger.error("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc: %s", kw)
 
-        kw['state'] = {"p": 4, "r": "https//paneco.odoo.com/web"}
-        state = json.loads(kw['state'])
+        state = {"p": 4, "r": "https//paneco.odoo.com/web"}
         dbname =  request.session.db
 
         if not http.db_filter([dbname]):
