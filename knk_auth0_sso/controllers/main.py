@@ -6,7 +6,6 @@ import json
 import logging
 import requests
 import werkzeug.utils
-from requests import session
 from werkzeug import urls
 from werkzeug.exceptions import BadRequest
 
@@ -15,7 +14,7 @@ from odoo.http import request
 from odoo.tools.misc import clean_context
 
 from odoo.addons.auth_oauth.controllers.main import OAuthLogin as Home, fragment_to_query_string
-from odoo.addons.web.controllers.utils import ensure_db, _get_login_redirect_url
+from odoo.addons.web.controllers.utils import ensure_db, _get_login_redirect_url, is_user_internal
 from odoo.exceptions import AccessDenied
 
 _logger = logging.getLogger(__name__)
@@ -53,13 +52,8 @@ class Auth0Controller(http.Controller):
     @http.route('/auth_oauth/auth0/signin', type='http', auth='none')
     @fragment_to_query_string
     def auth0_signin(self, **kw):
-        _logger.error("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc: %s", kw)
-        _logger.error("dbnamedbnamedbname: %s", request.session.db)
-        kw = {'code': kw.get('code'),
-         'state': '{"d": "skytalk-main-6301691", "p": 4, "r": "https%3A%2F%2Fpaneco.odoo.com%2Fweb"}'}
         state = json.loads(kw['state'])
         dbname = state['d']
-
         if not http.db_filter([dbname]):
             return BadRequest()
         ensure_db(db=dbname)
