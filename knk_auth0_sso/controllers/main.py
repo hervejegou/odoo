@@ -67,6 +67,7 @@ class Auth0Controller(http.Controller):
         try:
             provider = request.env['auth.oauth.provider'].sudo().browse(provider_id)
             authorization_data = provider.sudo().get_auth0_oauth_token(kw.get("code"), refresh_token=None)
+            _logger.error('authorization_dataauthorization_dataauthorization_dataauthorization : %s', authorization_data)
             kw.update(authorization_data)
 
             try:
