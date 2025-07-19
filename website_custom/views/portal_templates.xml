@@ -18,11 +18,11 @@
     </template>
     <template id="user_sign_in" inherit_id="portal.user_sign_in">
         <xpath expr="//a" position="replace">
-            <a id="sso_login" t-attf-class="#{_link_class}" style="cursor: pointer;">Sign in
+            <a id="sso_login" t-attf-class="#{_link_class}" class="cursor-pointer">Sign in
                 <span t-if="request.session.profile_session" class="text-danger fa fa-circle"/>
             </a>
 
-            <a id="sso_logout" t-attf-class="#{_link_class}" style="display:none;cursor: pointer;">Sign Out
+            <a id="sso_logout" t-attf-class="#{_link_class}" style="display:none" class="cursor-pointer">Sign Out
                 <span t-if="request.session.profile_session" class="text-danger fa fa-circle"/>
             </a>
         </xpath>
