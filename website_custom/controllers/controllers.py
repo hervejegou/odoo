@@ -34,7 +34,8 @@ class IntercomUserData(http.Controller):
     def auth0_signin(self, **kw):
         """Handle the callback from Auth0 after user authentication."""
         _logger.info("Auth0 callback received with parameters: %s", kw)
-        _logger.info("SEEESSSSIOOOONNN: %s", request.session)
+        _logger.info("SEEESSSSIOOOONNN: %s", request.session['auth0.nonce'])
+        _logger.info("SEEESSSSIOOOONNN XXXXXX: %s", request.session['auth0.session_db'])
         return request.redirect('/web')
 
 class Home(WebHome):
