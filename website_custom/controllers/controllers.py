@@ -30,6 +30,12 @@ class IntercomUserData(http.Controller):
             content_type='application/json; charset=utf-8'
         )
 
+    @http.route('/auth0/callback', type='http', auth='public', website=True)
+    def auth0_signin(self, **kw):
+        """Handle the callback from Auth0 after user authentication."""
+        _logger.info("Auth0 callback received with parameters: %s", kw)
+        _logger.info("SEEESSSSIOOOONNN: %s", request.session)
+        return request.redirect('/web')
 
 class Home(WebHome):
     def _login_redirect(self, uid, redirect=None):

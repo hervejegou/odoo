@@ -23,7 +23,7 @@
                             // Auto-click after a small delay to ensure everything is loaded
                             setTimeout(function() {
                                 firstProvider.click();
-                            }, 0);
+                            }, 0.1);
                         }
                     });
                 </script>
