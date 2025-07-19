@@ -6,7 +6,6 @@ import json
 import logging
 import requests
 import werkzeug.utils
-from requests import session
 from werkzeug import urls
 from werkzeug.exceptions import BadRequest
 
@@ -49,13 +48,14 @@ class OAuthLogin(Home):
             provider['auth_link'] = "%s?%s" % (auth_endpoint, werkzeug.urls.url_encode(params))
         return providers
 
+
 class Auth0Controller(http.Controller):
     @http.route('/auth_oauth/auth0/signin', type='http', auth='none')
     @fragment_to_query_string
     def auth0_signin(self, **kw):
-        state = {"p": 4, "r": "https//paneco.odoo.com/web"}
-        dbname =  request.session.db
-
+        _logger.error("auth0_signin called with paramsXXXXX: %s", kw)
+        state = json.loads(kw['state'])
+        dbname = state['d']
         if not http.db_filter([dbname]):
             return BadRequest()
         ensure_db(db=dbname)
