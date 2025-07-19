@@ -53,7 +53,6 @@ class Auth0Controller(http.Controller):
     @http.route('/auth_oauth/auth0/signin', type='http', auth='none')
     @fragment_to_query_string
     def auth0_signin(self, **kw):
-        _logger.error("auth0_signin called with paramsXXXXX: %s", kw)
         state = json.loads(kw['state'])
         dbname = state['d']
         if not http.db_filter([dbname]):

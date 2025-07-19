@@ -21,6 +21,10 @@
             <a id="sso_login" t-attf-class="#{_link_class}">Sign in
                 <span t-if="request.session.profile_session" class="text-danger fa fa-circle"/>
             </a>
+
+            <a id="sso_logout" t-attf-class="#{_link_class}" style="display:none;">Sign Out
+                <span t-if="request.session.profile_session" class="text-danger fa fa-circle"/>
+            </a>
         </xpath>
     </template>
 </odoo>
