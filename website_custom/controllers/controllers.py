@@ -30,7 +30,6 @@ class IntercomUserData(http.Controller):
             content_type='application/json; charset=utf-8'
         )
 
-
 class Home(WebHome):
     def _login_redirect(self, uid, redirect=None):
         if '/odoo' in redirect and not is_user_internal(uid):
